@@ -1,30 +1,35 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:learn/models/categories.dart';
-import 'package:learn/models/dishes.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:flutter/material.dart';
+import 'package:learn/constants/colors.dart';
+import 'package:learn/models/dishes.dart';
 
-class deshespage extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return dishespagestate();
-  }
-}
+class Dishes extends StatelessWidget {
+  const Dishes({Key? key}) : super(key: key);
 
-class dishespagestate extends State<deshespage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 252, 229, 200),
+      backgroundColor: const Color.fromARGB(255, 252, 229, 200),
       appBar: AppBar(
-        title: Text("home page"),
+        title: const Center(child: Text("Dishes")),
+        backgroundColor: AppColors.background,
+        foregroundColor: Colors.brown,
+        elevation: 0,
+        shape: const Border(bottom: BorderSide(color: Colors.brown)),
+        actions: [
+          const SizedBox(width: 15),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.shopping_bag_outlined, size: 24),
+          ),
+          const SizedBox(width: 10)
+        ],
       ),
       body: Container(
-        margin: EdgeInsets.all(20),
-// لسته تحتوي عليلاجميع صور وعناوين الاصناف
+        margin: const EdgeInsets.all(20),
         child: ListView.separated(
           separatorBuilder: (context, i) {
-            return Divider(
+            return const Divider(
               color: Color.fromARGB(255, 233, 195, 150),
               height: 10,
               thickness: 2,
@@ -43,26 +48,25 @@ class dishespagestate extends State<deshespage> {
                   btnCancelOnPress: () {},
                   btnOkOnPress: () {
                     AwesomeDialog(
-            context: context,
-            dialogType: DialogType.SUCCES,
-            animType: AnimType.BOTTOMSLIDE,
-            title: 'add order',
-            btnOkOnPress: () {},
-            )..show();
+                      context: context,
+                      dialogType: DialogType.SUCCES,
+                      animType: AnimType.BOTTOMSLIDE,
+                      title: 'add order',
+                      btnOkOnPress: () {},
+                    ).show();
                   },
-                )..show();
+                ).show();
               },
               child: Card(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                 child: Column(
                   children: [
                     Image.asset(dishes[index].image),
                     Text(dishes[index].name),
                     Text(dishes[index].price),
                     Container(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       child: Text(
                         dishes[index].description,
                         textAlign: TextAlign.center,

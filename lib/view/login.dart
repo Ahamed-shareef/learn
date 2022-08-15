@@ -2,91 +2,75 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:learn/view/homepage.dart';
+import 'package:learn/constants/colors.dart';
+import 'package:learn/constants/route_names.dart';
 
-class Login extends StatefulWidget {
-  @override
-  loginstate createstate() => loginstate();
+class Login extends StatelessWidget {
+  const Login({Key? key}) : super(key: key);
 
-  @override
-  State<StatefulWidget> createState() {
-    return loginstate();
-  }
-}
-
-class loginstate extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:  Color.fromARGB(255, 252, 229, 200),
+      backgroundColor: AppColors.background,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-              child: Center(
-                  child: CircleAvatar(
-                    radius: 100,
-                      backgroundImage: AssetImage("images/login.jpg"),
-
-              ))),
-                  SizedBox(height: 20,),
+          const Center(
+            child: CircleAvatar(
+              radius: 100,
+              backgroundImage: AssetImage("images/login.jpg"),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
           Card(
-             clipBehavior: Clip.antiAliasWithSaveLayer,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-            margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-            color: Color.fromARGB(255, 235, 199, 156),
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+            color: const Color.fromARGB(255, 235, 199, 156),
             child: Container(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: Form(
                   child: Column(
                 children: [
                   TextFormField(
                     decoration: InputDecoration(
                         hintText: "username",
-                        prefixIcon: Icon(Icons.person),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(width: 1),
-                            borderRadius: BorderRadius.circular(40))),
+                        prefixIcon: const Icon(Icons.person),
+                        border: OutlineInputBorder(borderSide: const BorderSide(width: 1), borderRadius: BorderRadius.circular(40))),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
                     obscureText: true,
                     decoration: InputDecoration(
                         hintText: "password",
-                        prefixIcon: Icon(Icons.person),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(width: 1),
-                            borderRadius: BorderRadius.circular(40))),
+                        prefixIcon: const Icon(Icons.person),
+                        border: OutlineInputBorder(borderSide: const BorderSide(width: 1), borderRadius: BorderRadius.circular(40))),
                   ),
                   Container(
-                    margin: EdgeInsets.all(10),
+                    margin: const EdgeInsets.all(10),
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30)),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                           primary: Colors.brown,
-                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                         ),
                         onPressed: () {
-                          setState(() {
-                            Navigator.of(context).pushReplacementNamed("designhome");
-                          });
+                          Navigator.of(context).pushReplacementNamed(AppRouteNames.home);
                         },
-                        child: Text(
+                        child: const Text(
                           "تسجيل الدخول ",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                         )),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
-                  Container(
-                      child: Row(
-                    children: [
+                  Row(
+                    children: const [
                       InkWell(
                         child: Text(
                           "اضغط هنا ",
@@ -95,7 +79,7 @@ class loginstate extends State<Login> {
                       ),
                       Text("اذا كنت لا تملك حساب "),
                     ],
-                  ))
+                  )
                 ],
               )),
             ),
