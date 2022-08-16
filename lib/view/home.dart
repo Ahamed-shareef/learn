@@ -19,14 +19,14 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: const Center(child: Text("Categories")),
         backgroundColor: AppColors.background,
-        foregroundColor: Colors.brown,
+        foregroundColor: AppColors.primaryColor,
         elevation: 0,
-        shape: const Border(bottom: BorderSide(color: Colors.brown)),
+        shape: const Border(bottom: BorderSide(color: AppColors.primaryColor)),
         actions: [
           const SizedBox(width: 15),
           IconButton(
-            onPressed: () {},
             icon: const Icon(Icons.shopping_bag_outlined, size: 24),
+            onPressed: () {},
           ),
           const SizedBox(width: 10)
         ],
@@ -45,10 +45,16 @@ class _HomeState extends State<Home> {
                   onTap: () => Navigator.of(context).pushNamed(AppRouteNames.dishes),
                   child: Card(
                     elevation: 0,
-                    color: AppColors.backgroundShaded.withOpacity(0.6),
+                    color: AppColors.backgroundShaded,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8.0),
-                      child: Text(category[index].name),
+                      padding: const EdgeInsets.all(5),
+                      child: Row(
+                        children: [
+                          CircleAvatar(backgroundImage: AssetImage(category[index].image)),
+                          Text(category[index].name),
+                        ],
+                      ),
                     ),
                   ),
                 );
@@ -69,10 +75,8 @@ class _HomeState extends State<Home> {
                 itemBuilder: (context, index) {
                   return Container(
                     alignment: Alignment.center,
-                    decoration: BoxDecoration(color: Colors.amber, borderRadius: BorderRadius.circular(15)),
-                    child: Text(
-                      dishes[index].name,
-                    ),
+                    decoration: BoxDecoration(color: AppColors.backgroundShaded, borderRadius: BorderRadius.circular(15)),
+                    child: Text(dishes[index].name),
                   );
                 },
               ),

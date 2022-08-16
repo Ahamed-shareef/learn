@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learn/constants/colors.dart';
 import 'package:learn/constants/route_names.dart';
 import 'package:learn/view/dishes.dart';
 import 'package:learn/view/home.dart';
@@ -18,6 +19,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        primarySwatch: AppColors.primaryColor,
+        primaryColor: AppColors.primaryColor,
         textTheme: GoogleFonts.cairoTextTheme(),
       ),
       home: const Login(),
