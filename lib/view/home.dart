@@ -3,9 +3,6 @@ import 'package:learn/constants/colors.dart';
 import 'package:learn/constants/route_names.dart';
 import 'package:learn/models/categories.dart';
 import 'package:learn/models/dishes.dart';
-import 'package:learn/view/dishes.dart';
-import 'package:searchfield/searchfield.dart';
-// import 'package:searchfield/searchfield.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -14,8 +11,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  // final controller = TextEditingController();
-  // List<Dishes> dish = alldishes;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,22 +30,13 @@ class _HomeState extends State<Home> {
           const SizedBox(width: 10),
           IconButton(
             icon: const Icon(Icons.search, size: 24),
-            onPressed: () =>
-                showSearch(context: context, delegate: Dishessaerch()),
+            onPressed: () => showSearch(context: context, delegate: DishesSearch()),
           ),
         ],
       ),
       drawer: const Drawer(),
       body: Column(
         children: [
-          // TextField(
-          //   controller: controller,
-          //     decoration: const InputDecoration(
-          //   prefixIcon: Icon(Icons.search),
-          //   hintText: "what do you want to eat tuday",
-          // )
-          // onChanged: searchdishe,,
-          // ),
           SizedBox(
             width: double.infinity,
             height: 50,
@@ -59,20 +45,16 @@ class _HomeState extends State<Home> {
               itemCount: category.length,
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
-                  onTap: () =>
-                      Navigator.of(context).pushNamed(AppRouteNames.dishes),
+                  onTap: () => Navigator.of(context).pushNamed(AppRouteNames.dishes),
                   child: Card(
                     elevation: 0,
                     color: AppColors.backgroundShaded,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
                     child: Padding(
                       padding: const EdgeInsets.all(5),
                       child: Row(
                         children: [
-                          CircleAvatar(
-                              backgroundImage:
-                                  AssetImage(category[index].image)),
+                          CircleAvatar(backgroundImage: AssetImage(category[index].image)),
                           Text(category[index].name),
                         ],
                       ),
@@ -96,9 +78,7 @@ class _HomeState extends State<Home> {
                 itemBuilder: (context, index) {
                   return Container(
                       alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          color: AppColors.backgroundShaded,
-                          borderRadius: BorderRadius.circular(15)),
+                      decoration: BoxDecoration(color: AppColors.backgroundShaded, borderRadius: BorderRadius.circular(15)),
                       child: Column(
                         children: [
                           Image.asset(dishes[index].image),
@@ -114,80 +94,53 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-
-//   void searchdishe(String query) {
-//     String input;
-//     final suggestion = dishes.where((element)
-//     {
-//       final dishesaerch = dishes[].name;
-
-//       return dishes.contains(query)
-//     }
-
-//     );
-//   }
-// }
 }
 
-class Dishessaerch extends SearchDelegate {
+class DishesSearch extends SearchDelegate {
   @override
   List<Widget>? buildActions(BuildContext context) {
-    return [
-      IconButton(onPressed: () => query = "", icon: const Icon(Icons.close)),
-    ];
+    return [IconButton(onPressed: () => query = "", icon: const Icon(Icons.close))];
   }
 
   @override
   Widget? buildLeading(BuildContext context) {
-    return IconButton(
-        onPressed: () => close(context, null),
-        icon: const Icon(Icons.arrow_back));
+    return IconButton(onPressed: () => close(context, null), icon: const Icon(Icons.arrow_back));
   }
 
   @override
   Widget buildResults(BuildContext context) {
-    return Text("data");
+    return const Text("data");
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List filterdishes = dishes.where((element) {
-      return element.name.toLowerCase().contains(query.toLowerCase());
-    }).toList();
+    var filterDishes = dishes.where(
+      (element) => element.name.toLowerCase().contains(query.toLowerCase()),
+    );
+
+    List<Dish> usedDishes = query == "" ? dishes : filterDishes.toList();
+
     return ListView.builder(
-        itemCount: filterdishes.length,
-        itemBuilder: (context, i) {
-          return InkWell(
-              onTap: () {
-                showResults(context);
-              },
-              child: Container(
-                padding: const EdgeInsets.all(20),
-                color: AppColors.backgroundShaded,
-                child: query == ""
-                    ? Column(children: [
-                        Image.asset(dishes[i].image),
-                        Text(dishes[i].name),
-                        Text(dishes[i].price),
-                        Text(dishes[i].description),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        const Text("************************")
-                      ])
-                    : Column(
-                        children: [
-                          Image.asset(filterdishes[i].image),
-                          Text(filterdishes[i].name),
-                          Text(filterdishes[i].price),
-                          Text(filterdishes[i].description),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const Text("************************")
-                        ],
-                      ),
-              ));
-        });
+      itemCount: usedDishes.length,
+      itemBuilder: (context, i) {
+        return InkWell(
+          onTap: () => showResults(context),
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            color: AppColors.backgroundShaded,
+            child: Column(
+              children: [
+                Image.asset(usedDishes[i].image),
+                Text(usedDishes[i].name),
+                Text(usedDishes[i].price),
+                Text(usedDishes[i].description),
+                const SizedBox(height: 10),
+                const Text("************************")
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 }
