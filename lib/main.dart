@@ -18,7 +18,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+//       ThemeData appBarTheme(BuildContext context) {
+//    final ThemeData theme = Theme.of(context);
+//    return theme.copyWith(
+//      primaryColor: theme.primaryColor,
+//      primaryIconTheme: theme.primaryIconTheme,
+//      primaryColorBrightness: theme.primaryColorBrightness,
+//      primaryTextTheme: theme.primaryTextTheme,
+//    );
+//  }
       theme: ThemeData(
+        // textSelectionTheme: TextSelectionThemeData(
+        //   selectionHandleColor:AppColors.primaryColor),
         primarySwatch: AppColors.primaryColor,
         primaryColor: AppColors.primaryColor,
         textTheme: GoogleFonts.cairoTextTheme(),

@@ -46,6 +46,25 @@ List<Dish> dishes = const [
       id: "4",
       name: "Cookie Slab",
       price: "QR50.00",
-      image: "images/3.jpg",
+      image: "images/4.jpg",
+      description: "Moist chocolate chip cookie bar topped with vanilla soft serve ice cream and Belgian milk chocolate"),
+        Dish(
+      catigotyID: "1",
+      id: "4",
+      name: "Cookie Slab",
+      price: "QR50.00",
+      image: "images/5.jpg",
+      description: "Moist chocolate chip cookie bar topped with vanilla soft serve ice cream and Belgian milk chocolate"),  Dish(
+      catigotyID: "1",
+      id: "4",
+      name: "Cookie Slab",
+      price: "QR50.00",
+      image: "images/6.jpg",
+      description: "Moist chocolate chip cookie bar topped with vanilla soft serve ice cream and Belgian milk chocolate"),  Dish(
+      catigotyID: "1",
+      id: "4",
+      name: "Cookie Slab",
+      price: "QR50.00",
+      image: "images/7.jpg",
       description: "Moist chocolate chip cookie bar topped with vanilla soft serve ice cream and Belgian milk chocolate"),
 ];
