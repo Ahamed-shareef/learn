@@ -11,7 +11,7 @@ class CategoriesHorizontalView extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10),
       width: double.infinity,
-      height: 45,
+      height: 65,
       decoration: BoxDecoration(
         border: Border.all(color: AppColors.backgroundShaded),
         borderRadius: BorderRadius.circular(50),
@@ -24,16 +24,22 @@ class CategoriesHorizontalView extends StatelessWidget {
           itemCount: category.length,
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
-              onTap: () => Navigator.of(context).pushNamed(AppRouteNames.dishes),
+              onTap: () =>
+                  Navigator.of(context).pushNamed(AppRouteNames.dishes),
               child: Card(
                 elevation: 0,
                 color: AppColors.backgroundShaded,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50)),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
                   child: Row(
                     children: [
-                      CircleAvatar(backgroundImage: AssetImage(category[index].image)),
+                      CircleAvatar(
+                          backgroundImage: AssetImage(category[index].image)),
+                      const SizedBox(
+                        width: 5,
+                      ),
                       Text(category[index].name),
                       const SizedBox(width: 10),
                     ],

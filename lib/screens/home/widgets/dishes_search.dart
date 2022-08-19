@@ -10,7 +10,8 @@ class DishesSearch extends SearchDelegate {
     return theme.copyWith(
       appBarTheme: AppBarTheme(
         backgroundColor: AppColors.background,
-        iconTheme: theme.primaryIconTheme.copyWith(color: AppColors.primaryColor),
+        iconTheme:
+            theme.primaryIconTheme.copyWith(color: AppColors.primaryColor),
         toolbarTextStyle: theme.textTheme.bodyText2,
         titleTextStyle: theme.textTheme.headline6,
       ),
@@ -24,17 +25,39 @@ class DishesSearch extends SearchDelegate {
 
   @override
   List<Widget>? buildActions(BuildContext context) {
-    return [IconButton(onPressed: () => query = "", icon: const Icon(Icons.close))];
+    return [
+      IconButton(onPressed: () => query = "", icon: const Icon(Icons.close))
+    ];
   }
 
   @override
   Widget? buildLeading(BuildContext context) {
-    return IconButton(onPressed: () => close(context, null), icon: const Icon(Icons.arrow_back));
+    return IconButton(
+        onPressed: () => close(context, null),
+        icon: const Icon(Icons.arrow_back));
   }
 
   @override
   Widget buildResults(BuildContext context) {
-    return const Text("data");
+    var filterDishes = dishes.where(
+      (element) => element.name.toLowerCase().contains(query.toLowerCase()),
+    );
+
+    List<Dish> usedDishes = query == "" ? dishes : filterDishes.toList();
+
+    return GestureDetector(
+        onTap: () {
+          showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    color: AppColors.background,
+                    child: DishesGrid(dishes: usedDishes));
+              });
+        },
+        child: DishesGrid(dishes: usedDishes));
   }
 
   @override
@@ -45,7 +68,11 @@ class DishesSearch extends SearchDelegate {
 
     List<Dish> usedDishes = query == "" ? dishes : filterDishes.toList();
 
-    return DishesGrid(dishes: usedDishes);
+    return InkWell(
+        onTap: () {
+          showResults(context);
+        },
+        child: DishesGrid(dishes: usedDishes));
 
     //! To be Removed
     // return ListView.builder(

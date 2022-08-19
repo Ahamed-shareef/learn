@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:learn/models/dishes.dart';
-import 'package:learn/screens/home/widgets/dish_card.dart';
+// import 'package:learn/screens/home/widgets/dish_card.dart';
+
+import '../../../models/dish_details.dart';
 
 class DishesGrid extends StatelessWidget {
   final List<Dish> dishes;
@@ -10,24 +12,22 @@ class DishesGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.only(right: 10.0, top: 10.0, bottom: 10.0),
       child: ClipRRect(
         borderRadius: const BorderRadius.only(
           topRight: Radius.circular(15),
           topLeft: Radius.circular(15),
         ),
         child: GridView.builder(
-          padding: EdgeInsets.zero,
+          padding: const EdgeInsets.only(left: 10),
           physics: const BouncingScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 200,
-            mainAxisExtent: 180,
-            childAspectRatio: 3 / 5,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 1,
             crossAxisSpacing: 5,
             mainAxisSpacing: 5,
           ),
           itemCount: dishes.length,
-          itemBuilder: (context, index) => DishesCard(dish: dishes[index]),
+          itemBuilder: (context, index) => DishesDetail(dish: dishes[index]),
         ),
       ),
     );
