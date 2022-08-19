@@ -16,11 +16,10 @@ class _DishesCardState extends State<DishesCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 0,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       color: AppColors.backgroundShaded,
-      shape: RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.circular(10)), // alignment: Alignment.center,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), // alignment: Alignment.center,
       child: Stack(
         children: [
           GestureDetector(
@@ -29,8 +28,7 @@ class _DishesCardState extends State<DishesCard> {
             onTap: () {},
             child: Column(
               children: [
-                Image.asset(widget.dish.image,
-                    width: double.infinity, height: 120, fit: BoxFit.cover),
+                Image.asset(widget.dish.image, width: double.infinity, height: 120, fit: BoxFit.cover),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Column(
@@ -47,22 +45,15 @@ class _DishesCardState extends State<DishesCard> {
                         children: [
                           Text(
                             widget.dish.price,
-                            style: const TextStyle(
-                                color: AppColors.primaryColor, fontSize: 12),
+                            style: const TextStyle(color: AppColors.primaryColor, fontSize: 12),
                           ),
-
                           Row(
                             children: [
-                              Icon(Icons.star,
-                                  size: 16, color: Colors.amber.shade800),
-                              Icon(Icons.star,
-                                  size: 16, color: Colors.amber.shade800),
-                              Icon(Icons.star,
-                                  size: 16, color: Colors.amber.shade800),
-                              Icon(Icons.star,
-                                  size: 16, color: Colors.amber.shade800),
-                              Icon(Icons.star_half,
-                                  size: 16, color: Colors.amber.shade800),
+                              Icon(Icons.star, size: 16, color: Colors.amber.shade800),
+                              Icon(Icons.star, size: 16, color: Colors.amber.shade800),
+                              Icon(Icons.star, size: 16, color: Colors.amber.shade800),
+                              Icon(Icons.star, size: 16, color: Colors.amber.shade800),
+                              Icon(Icons.star_half, size: 16, color: Colors.amber.shade800),
                             ],
                           )
                           // const Text("4.5", style: TextStyle(color: AppColors.primaryColor, height: 2)),
@@ -75,8 +66,8 @@ class _DishesCardState extends State<DishesCard> {
             ),
           ),
           Positioned(
-            top: 10,
-            left: 10,
+            top: 0,
+            left: 0,
             child: IconButton(
               icon: Icon(
                 favorite ? Icons.favorite : Icons.favorite_outline,

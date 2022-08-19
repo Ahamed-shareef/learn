@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:learn/constants/colors.dart';
-import 'package:learn/models/categories.dart';
+import 'package:learn/models/dishes.dart';
+import 'package:learn/screens/home/widgets/categories_horizontal_view.dart';
+import 'package:learn/screens/home/widgets/dishes_grid.dart';
 import 'package:learn/screens/home/widgets/dishes_search.dart';
-import 'package:learn/screens/home/widgets/home_screen_design.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,74 +12,76 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<Dish> filteredDishes = [];
+
+  void filteringDishes(String categoryID) {
+    setState(() {
+      filteredDishes = dishes.where((dish) => dish.categoryID == categoryID).toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 9,
-      child: Scaffold(
-          backgroundColor: Colors.white,
-          appBar: AppBar(
-            bottom: TabBar(tabs: [
-              Tab(
-                child: Text(category[0].name),
-              ),
-              Tab(
-                child: Text(category[1].name),
-              ),
-              Tab(
-                child: Text(category[2].name),
-              ),
-              Tab(
-                child: Text(category[3].name),
-              ),
-              Tab(
-                child: Text(category[4].name),
-              ),
-              Tab(
-                child: Text(category[5].name),
-              ),
-              Tab(
-                child: Text(category[6].name),
-              ),
-              Tab(
-                child: Text(category[7].name),
-              ),
-              Tab(
-                child: Text(category[8].name),
-              ),
-            ]),
-            //! title: const Center(child: Text("Categories")),
-            backgroundColor: Colors.white,
-            foregroundColor: AppColors.primaryColor,
-            elevation: 0,
-            // shape: const Border(bottom: BorderSide(color: AppColors.primaryColor)),
-            actions: [
-              const SizedBox(width: 5),
-              IconButton(
-                icon: const Icon(Icons.search, size: 22),
-                onPressed: () => showSearch(
-                    context: context, delegate: DishesSearch()), //* Search View
-              ),
-              IconButton(
-                icon: const Icon(Icons.shopping_bag_outlined, size: 22),
-                onPressed: () {},
-              ),
-              const SizedBox(width: 5),
+    List<Dish> usedDishes = filteredDishes.isNotEmpty ? filteredDishes : dishes;
+
+    BorderRadius sheetBorderRadius = const BorderRadius.only(
+      topLeft: Radius.circular(40),
+      topRight: Radius.circular(40),
+    );
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: AppColors.primaryColor,
+        elevation: 0,
+        actions: [
+          const SizedBox(width: 5),
+          IconButton(
+            icon: const Icon(Icons.search, size: 22),
+            onPressed: () => showSearch(context: context, delegate: DishesSearch()), //* Search View
+          ),
+          IconButton(
+            icon: const Icon(Icons.shopping_bag_outlined, size: 22),
+            onPressed: () {},
+          ),
+          const SizedBox(width: 5),
+        ],
+      ),
+      body: Container(
+        margin: const EdgeInsets.only(top: 5),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 5, offset: Offset(0, 0))],
+          borderRadius: sheetBorderRadius,
+        ),
+        child: Container(
+          padding: const EdgeInsets.only(top: 15),
+          decoration: BoxDecoration(
+            borderRadius: sheetBorderRadius,
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                AppColors.background.withOpacity(0.8),
+                AppColors.background.withOpacity(0.7),
+                AppColors.background.withOpacity(0.5),
+                AppColors.background.withOpacity(0.4),
+                AppColors.background.withOpacity(0.3),
+              ],
+            ),
+          ),
+          child: Column(
+            children: [
+              //* List view to present categories
+              CategoriesHorizontalView(onPressed: filteringDishes),
+              //
+              //* Grid View for the home page
+              Flexible(child: DishesGrid(dishes: usedDishes)),
             ],
           ),
-          //! drawer: const Drawer(),
-          // ignore: prefer_const_literals_to_create_immutables
-          body: const TabBarView(children: [
-            HomeScreenDesign(),
-            HomeScreenDesign(),
-            HomeScreenDesign(),
-            HomeScreenDesign(),
-            HomeScreenDesign(),
-            HomeScreenDesign(),
-            HomeScreenDesign(),
-            HomeScreenDesign(),
-            HomeScreenDesign(),
-          ])),
+        ),
+      ),
     );
   }
 }
