@@ -12,10 +12,8 @@ class DishCategory {
 }
 
 List<DishCategory> category = const [
+  DishCategory(id: "0", name: "الكل", image: "images/L9.jpg"),
   DishCategory(id: "1", name: "اطباق شوكوميلت المميزة", image: "images/L1.jpg"),
   DishCategory(id: "2", name: "كريب", image: "images/L2.jpg"),
   DishCategory(id: "3", name: "وافل", image: "images/L3.jpg"),
-  DishCategory(id: "4", name: "المميزة", image: "images/L4.jpg"),
-  DishCategory(id: "5", name: "crip", image: "images/L5.jpg"),
-  DishCategory(id: "6", name: "wafil", image: "images/L6.jpg"),
 ];

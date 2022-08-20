@@ -5,7 +5,7 @@ import 'package:learn/constants/route_names.dart';
 import 'package:learn/screens/auth/sign_in_screen.dart';
 import 'package:learn/screens/dish_details/dish_details_screen.dart';
 import 'package:learn/screens/home/home_screen.dart';
-import 'package:learn/view/dishes.dart';
+import 'package:learn/view/DishesCart.dart';
 
 void main() => runApp(const MyApp());
 
@@ -37,8 +37,7 @@ class MyApp extends StatelessWidget {
       routes: {
         AppRouteNames.singin: (context) => const SignInScreen(),
         AppRouteNames.home: (context) => const HomeScreen(),
-        AppRouteNames.dishes: (context) => const Dishes(),
-        AppRouteNames.dishDetails: (context) => const Dishes(),
+        AppRouteNames.dishesCart: (context) => const DishesCart(),
         AppRouteNames.dishDetailsScreen: (context) => const DishDetailsScreen(),
       },
     );

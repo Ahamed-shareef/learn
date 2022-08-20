@@ -5,6 +5,8 @@ import 'package:learn/screens/home/widgets/categories_horizontal_view.dart';
 import 'package:learn/screens/home/widgets/dishes_grid.dart';
 import 'package:learn/screens/home/widgets/dishes_search.dart';
 
+import '../../constants/route_names.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
   @override
@@ -45,7 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           IconButton(
             icon: const Icon(Icons.shopping_bag_outlined, size: 22),
-            onPressed: () {},
+            onPressed: () =>
+                Navigator.of(context).pushNamed(AppRouteNames.dishesCart),
           ),
           const SizedBox(width: 5),
         ],

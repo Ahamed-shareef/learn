@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:learn/constants/colors.dart';
 import 'package:learn/screens/home/widgets/dishes_search.dart';
 
+import '../../constants/route_names.dart';
+
 class DishDetailsScreen extends StatefulWidget {
   const DishDetailsScreen({super.key});
 
@@ -32,7 +34,8 @@ class _DishDetailsScreen extends State<DishDetailsScreen> {
             ),
             IconButton(
               icon: const Icon(Icons.shopping_bag_outlined, size: 22),
-              onPressed: () {},
+              onPressed: () =>
+                  Navigator.of(context).pushNamed(AppRouteNames.dishesCart),
             ),
             const SizedBox(width: 5),
           ],
