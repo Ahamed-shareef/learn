@@ -16,7 +16,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void filteringDishes(String categoryID) {
     setState(() {
-      filteredDishes = dishes.where((dish) => dish.categoryID == categoryID).toList();
+      filteredDishes =
+          dishes.where((dish) => dish.categoryID == categoryID).toList();
     });
   }
 
@@ -39,7 +40,8 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(width: 5),
           IconButton(
             icon: const Icon(Icons.search, size: 22),
-            onPressed: () => showSearch(context: context, delegate: DishesSearch()), //* Search View
+            onPressed: () => showSearch(
+                context: context, delegate: DishesSearch()), //* Search View
           ),
           IconButton(
             icon: const Icon(Icons.shopping_bag_outlined, size: 22),
@@ -52,7 +54,9 @@ class _HomeScreenState extends State<HomeScreen> {
         margin: const EdgeInsets.only(top: 5),
         decoration: BoxDecoration(
           color: Colors.white,
-          boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 5, offset: Offset(0, 0))],
+          boxShadow: const [
+            BoxShadow(color: Colors.grey, blurRadius: 5, offset: Offset(0, 0))
+          ],
           borderRadius: sheetBorderRadius,
         ),
         child: Container(

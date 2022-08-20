@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:learn/constants/colors.dart';
 import 'package:learn/constants/route_names.dart';
 import 'package:learn/screens/auth/sign_in_screen.dart';
+import 'package:learn/screens/dish_details/dish_details_screen.dart';
 import 'package:learn/screens/home/home_screen.dart';
 import 'package:learn/view/dishes.dart';
 
@@ -34,10 +35,11 @@ class MyApp extends StatelessWidget {
       ),
       home: const SignInScreen(),
       routes: {
-        AppRouteNames.login: (context) => const SignInScreen(),
+        AppRouteNames.singin: (context) => const SignInScreen(),
         AppRouteNames.home: (context) => const HomeScreen(),
         AppRouteNames.dishes: (context) => const Dishes(),
         AppRouteNames.dishDetails: (context) => const Dishes(),
+        AppRouteNames.dishDetailsScreen: (context) => const DishDetailsScreen(),
       },
     );
   }

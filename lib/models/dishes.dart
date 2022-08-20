@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 class Dish {
   final String categoryID;
   final String id;
@@ -14,6 +15,33 @@ class Dish {
     required this.image,
     required this.description,
   });
+
+  @override
+  String toString() {
+    return 'Dish(categoryID: $categoryID, id: $id, name: $name, price: $price, image: $image, description: $description)';
+  }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'categoryID': categoryID,
+      'id': id,
+      'name': name,
+      'price': price,
+      'image': image,
+      'description': description,
+    };
+  }
+
+  factory Dish.fromMap(Map<String, dynamic> map) {
+    return Dish(
+      categoryID: map['categoryID'] as String,
+      id: map['id'] as String,
+      name: map['name'] as String,
+      price: map['price'] as String,
+      image: map['image'] as String,
+      description: map['description'] as String,
+    );
+  }
 }
 
 List<Dish> dishes = const [
@@ -35,37 +63,42 @@ List<Dish> dishes = const [
           "Sphere of strawberry sauce stuffed vanilla cheesecake rolled in golden fried Konafa served with lotus sauce and strawberry sauce. "),
   Dish(
       id: "3",
-      categoryID: "2",
+      categoryID: "1",
       name: "Cookie Slab",
       price: "QR50.00",
       image: "images/3.jpg",
-      description: "Moist chocolate chip cookie bar topped with vanilla soft serve ice cream and Belgian milk chocolate"),
+      description:
+          "Moist chocolate chip cookie bar topped with vanilla soft serve ice cream and Belgian milk chocolate"),
   Dish(
       id: "4",
       categoryID: "2",
       name: "Cookie Slab",
       price: "QR50.00",
       image: "images/4.jpg",
-      description: "Moist chocolate chip cookie bar topped with vanilla soft serve ice cream and Belgian milk chocolate"),
+      description:
+          "Moist chocolate chip cookie bar topped with vanilla soft serve ice cream and Belgian milk chocolate"),
   Dish(
       id: "5",
-      categoryID: "3",
+      categoryID: "2",
       name: "Cookie Slab",
       price: "QR50.00",
       image: "images/5.jpg",
-      description: "Moist chocolate chip cookie bar topped with vanilla soft serve ice cream and Belgian milk chocolate"),
+      description:
+          "Moist chocolate chip cookie bar topped with vanilla soft serve ice cream and Belgian milk chocolate"),
   Dish(
       id: "6",
       categoryID: "3",
       name: "Cookie Slab",
       price: "QR50.00",
       image: "images/6.jpg",
-      description: "Moist chocolate chip cookie bar topped with vanilla soft serve ice cream and Belgian milk chocolate"),
+      description:
+          "Moist chocolate chip cookie bar topped with vanilla soft serve ice cream and Belgian milk chocolate"),
   Dish(
       id: "7",
-      categoryID: "1",
+      categoryID: "3",
       name: "Cookie Slab",
       price: "QR50.00",
       image: "images/7.jpg",
-      description: "Moist chocolate chip cookie bar topped with vanilla soft serve ice cream and Belgian milk chocolate"),
+      description:
+          "Moist chocolate chip cookie bar topped with vanilla soft serve ice cream and Belgian milk chocolate"),
 ];
