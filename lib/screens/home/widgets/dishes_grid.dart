@@ -23,7 +23,7 @@ class DishesGrid extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent: cardWidth,
-            childAspectRatio: cardWidth / size.height * 3.3,
+            childAspectRatio: cardWidth / size.height * 3.9,
           ),
           itemCount: dishes.length,
           itemBuilder: (context, index) => DishesCard(dish: dishes[index]),

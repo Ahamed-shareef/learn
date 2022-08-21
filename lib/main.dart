@@ -3,9 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:learn/constants/colors.dart';
 import 'package:learn/constants/route_names.dart';
 import 'package:learn/screens/auth/sign_in_screen.dart';
+import 'package:learn/screens/cart/cart_screen.dart';
 import 'package:learn/screens/dish_details/dish_details_screen.dart';
 import 'package:learn/screens/home/home_screen.dart';
-import 'package:learn/view/DishesCart.dart';
 
 void main() => runApp(const MyApp());
 
@@ -16,28 +16,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-//!   ThemeData appBarTheme(BuildContext context) {
-//!     final ThemeData theme = Theme.of(context);
-//!     return theme.copyWith(
-//!       primaryColor: theme.primaryColor,
-//!       primaryIconTheme: theme.primaryIconTheme,
-//!       primaryColorBrightness: theme.primaryColorBrightness,
-//!       primaryTextTheme: theme.primaryTextTheme,
-//!     );
-//!   }
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-//!     textSelectionTheme: TextSelectionThemeData(
-//!     selectionHandleColor:AppColors.primaryColor),
         primarySwatch: AppColors.primaryColor,
         primaryColor: AppColors.primaryColor,
         textTheme: GoogleFonts.cairoTextTheme(),
+        appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.white,
+            foregroundColor: AppColors.primaryColor,
+            elevation: 0,
+            actionsIconTheme: IconThemeData(color: AppColors.primaryColor, size: 22)),
       ),
       home: const SignInScreen(),
       routes: {
-        AppRouteNames.singin: (context) => const SignInScreen(),
+        AppRouteNames.singIn: (context) => const SignInScreen(),
         AppRouteNames.home: (context) => const HomeScreen(),
-        AppRouteNames.dishesCart: (context) => const DishesCart(),
+        AppRouteNames.dishesCart: (context) => const CartScreen(),
         AppRouteNames.dishDetailsScreen: (context) => const DishDetailsScreen(),
       },
     );
