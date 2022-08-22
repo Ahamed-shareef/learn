@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:learn/constants/colors.dart';
 
-import '../models/dishes.dart';
+import '../../models/dishes.dart';
 
 class DishesCart extends StatefulWidget {
   const DishesCart({Key? key}) : super(key: key);
@@ -23,9 +23,7 @@ class _DishesCartState extends State<DishesCart> {
           backgroundColor: Colors.white,
           foregroundColor: AppColors.primaryColor,
           elevation: 0,
-          actions: [
-            ElevatedButton(onPressed: () {}, child: const Text("order"))
-          ],
+          actions: [ElevatedButton(onPressed: () {}, child: const Text("order"))],
         ),
         body: Column(
           children: [
@@ -46,9 +44,7 @@ class _DishesCartState extends State<DishesCart> {
                       radius: 30,
                       backgroundImage: AssetImage(dishes[0].image),
                     ),
-                    trailing: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.change_circle)),
+                    trailing: IconButton(onPressed: () {}, icon: const Icon(Icons.change_circle)),
                     onTap: () {},
                   );
                 }),
@@ -63,13 +59,11 @@ class _DishesCartState extends State<DishesCart> {
                     children: const [
                       Text(
                         "dishes count",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         "10",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -81,13 +75,11 @@ class _DishesCartState extends State<DishesCart> {
                     children: const [
                       Text(
                         "amount",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         "QR520.0",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),

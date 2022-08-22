@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:learn/constants/colors.dart';
 import 'package:learn/models/dishes.dart';
+import 'package:learn/widgets/rating_bar.dart';
 
 import '../../../constants/route_names.dart';
 
@@ -21,20 +22,16 @@ class _DishesCardState extends State<DishesCard> {
       elevation: 0,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       color: AppColors.backgroundShaded,
-      shape: RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.circular(10)), // alignment: Alignment.center,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), // alignment: Alignment.center,
       child: Stack(
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.of(context).pushNamed(AppRouteNames.dishDetailsScreen,
-                  arguments: widget.dish.toMap() as dynamic);
+              Navigator.of(context).pushNamed(AppRouteNames.dishDetailsScreen, arguments: widget.dish.toMap() as dynamic);
             },
             child: Column(
               children: [
-                Image.asset(widget.dish.image,
-                    width: double.infinity, height: 120, fit: BoxFit.cover),
+                Image.asset(widget.dish.image, width: double.infinity, height: 120, fit: BoxFit.cover),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Column(
@@ -51,24 +48,9 @@ class _DishesCardState extends State<DishesCard> {
                         children: [
                           Text(
                             widget.dish.price,
-                            style: const TextStyle(
-                                color: AppColors.primaryColor, fontSize: 12),
+                            style: const TextStyle(color: AppColors.primaryColor, fontSize: 12),
                           ),
-                          Row(
-                            children: [
-                              Icon(Icons.star,
-                                  size: 16, color: Colors.amber.shade800),
-                              Icon(Icons.star,
-                                  size: 16, color: Colors.amber.shade800),
-                              Icon(Icons.star,
-                                  size: 16, color: Colors.amber.shade800),
-                              Icon(Icons.star,
-                                  size: 16, color: Colors.amber.shade800),
-                              Icon(Icons.star_half,
-                                  size: 16, color: Colors.amber.shade800),
-                            ],
-                          )
-                          // const Text("4.5", style: TextStyle(color: AppColors.primaryColor, height: 2)),
+                          const RatingBar(),
                         ],
                       )
                     ],
